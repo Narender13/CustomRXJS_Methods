@@ -35,8 +35,45 @@ callback();
 })
 
 
+<--------------------interceptor---------------------------->
+    
+    const requestTracker$$ = new BevahiorSubject<booela>(false)
+    this.appstateRepo.trackRequest(requestTracker$$);
+    return next.handdle(apiReq).pipe(
+        finalize(()=> {
+        requestTracker$$.next(true);
+        requestTracker$$.complete();
+        })
+        
+<----------------------repo------------------------------>
+        private trackRequest(request: BehaviorSuject<Boolean>){
+         const tracker = this.trackers$$;
+          this.trackers$$.next([...tracker.getValue(),request])
+           }
+    )
+   this.trackers$$.pipe(
+       takeUntil(this.destroy$),
+       filter(arr=> arr.lengh > 0),
+       map(arr => folkJoin({...arr.filter(x => !x.getValue())}),
+       tap(_ => this.setloadingState(true)),
+       switchMap(tack => tack))
+       .subscribe(_ => {
+           this.trackers.next([]);
+           this.setLoadingState(false)
+                 
+       } )
+   
+   
+   )
+
 }
 
+setLoadingState(isLoading:boolean){
+ store.update(state => ({
+     ...state,
+     isLoading
+     )
+}
       pipe(prepare(()=> subject.next(true),
      finalize(()=> subject.next(false) )
             )
