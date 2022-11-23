@@ -1,4 +1,4 @@
-import {tap, filter, operatorFunction,Observable,mergeMap,combineLatestWith,first,from,groupBy,map,toArray,UnaryFunction,pipe} from 'rxjs';
+import {tap, filter, defer,operatorFunction,Observable,mergeMap,combineLatestWith,first,from,groupBy,map,toArray,UnaryFunction,pipe} from 'rxjs';
 
 export function groupByMap<T, K, R>(
     key: (value: T) => K,
@@ -27,6 +27,19 @@ export function filterNullish<T>():UnaryFunction<Observable<T | null | undefined
         filter(x=> x != null) as operatorFunction<T | null | undefined,T>
     );
 }
+
+export function prepare<T>(callback:()=> void):(source:Observable<T>)=> Observable<T>{
+return (source:Observable<T>):Observable<T>=> defer(()=>{
+callback();
+    return source;
+})
+
+
+}
+
+      pipe(prepare(()=> subject.next(true),
+     finalize(()=> subject.next(false) )
+            )
 
 groupByMap(
     x=> x. arraved,////key for grouping
