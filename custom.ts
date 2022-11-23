@@ -46,6 +46,9 @@ callback();
         })
         
 <----------------------repo------------------------------>
+        private tracker$$ = new BehaviourSubject<BehaviourSubject<boolean>[]>([]);
+        isloading = store.pipe(select((state)=> state.isloading)
+                           
         private trackRequest(request: BehaviorSuject<Boolean>){
          const tracker = this.trackers$$;
           this.trackers$$.next([...tracker.getValue(),request])
