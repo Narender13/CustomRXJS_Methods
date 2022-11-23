@@ -62,7 +62,7 @@ callback();
        switchMap(tack => tack))
        .subscribe(_ => {
            this.trackers.next([]);
-           this.setLoadingState(false)
+           this.setLoadingState(false) 
                  
        } )
    
