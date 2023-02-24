@@ -91,3 +91,6 @@ groupByMap(
 
 }
 
+remove duplicates objects from array using new map
+   [...new Map(x.map(y=> [y.key,y]).values()]
+    
