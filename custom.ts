@@ -35,6 +35,18 @@ callback();
 })
 
 
+sotr----methods
+
+arry.sort(method)
+method(current:any.next:any){
+if(current == null) return 1
+    if(next == null) return -1
+    if(next == current) return 0
+    if(next > curr) return 1
+    retun -1
+}
+
+
 <--------------------interceptor---------------------------->
     
     const requestTracker$$ = new BevahiorSubject<booela>(false)
