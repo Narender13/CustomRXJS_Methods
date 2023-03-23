@@ -106,3 +106,20 @@ groupByMap(
 remove duplicates objects from array using new map
    [...new Map(x.map(y=> [y.key,y]).values()]
     
+for unsubscribe in rxjs
+    
+obs$.pipe(
+untilDestroy(this)
+).subscribe()
+   
+ import{}   
+export function untilDestroy<T>(
+componentInstnce:any
+ ):OpertatorFunction<T,T>{
+if(!componentInstnce.destroy$){
+
+componentInstnce.destroy$ = new Subject<void>();
+}
+return takeUntil( componentInstnce.destroy$)  
+}
+    
